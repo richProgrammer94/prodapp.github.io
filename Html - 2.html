@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Prod App</title>
+</head>
+<body>
+    <header>
+        <h1>This is my Productivity App</h1>
+    </header>
+    <main>
+        <div class="time box">
+            <h1 class="" id="display">00:00:00</h1>
+        </div>
+        <div class="input box">
+            <h2>Modo de trabajo para el día de hoy</h2>
+            <select name="dropdoon" id="dropdown">
+                <option value="Choose one">Choose one</option>
+                <option value="Practice/Project">Practice/Project</option>
+                <option value="Learn">Learn</option>
+                <option value="Both">Both</option>
+            </select>
+            <button id="play" type="button" onclick="start()">Start</button>
+            <button id="pause" type="button" onclick="stop()" disabled>Pause</button>
+            <button id="end" type="button" onclick="finish()" disabled>End</button>
+        </div>
+    </main>
+    <footer>
+        <script>
+                const play = document.getElementById("play");
+                const pause = document.getElementById("pause");
+                const end = document.getElementById("end");
+                let display = document.getElementById("display");
+                let cronometro = "";
+                let hours = 0;
+                let minutes = 0;
+                let seconds;
+                let starting;
+                let count = 0;
+
+            function crono() {
+                if (seconds === undefined) {
+                    starting = new Date().getSeconds() - count; // Aqui se toma el tiempo just cuando se oprime START
+                    // Tiempo usado para luego restarlo de new Date(), el cual va dando el tiempo cada vez que se llama a crono()
+                }
+                const now = new Date();
+                seconds = now.getSeconds() - starting; // conversion
+                if (seconds <0) seconds+= 60; // funciona, NO QUITAR
+                //if (count % 60 == 0 && count != 0) {minutes++;} // minutero calculo
+                //if (count >= 60) count = 0;
+                minutes = Math.floor(count / 60) - hours*60;
+                if (minutes > 59) {hours++;}
+                if (minutes > 59) {minutes = 0;}
+                count++; 
+                if (seconds >= 60) seconds-= 60;
+                console.log(count-1,seconds)
+                if (seconds < 10 && minutes < 10 && hours < 10)
+                display.textContent = `${"0"+hours}:${"0"+minutes}:${"0"+seconds}`;
+                else if (minutes < 10 && hours < 10)
+                display.textContent = `${"0"+hours}:${"0"+minutes}:${seconds}`;
+                else if (hours < 10 && seconds < 10)
+                display.textContent = `${"0"+hours}:${minutes}:${"0"+seconds}`;
+                else if (minutes < 10 && seconds < 10)
+                display.textContent = `${hours}:${"0"+minutes}:${"0"+seconds}`;
+                else if (hours < 10)
+                display.textContent = `${"0"+hours}:${minutes}:${seconds}`;
+                else display.textContent = `${hours}:${minutes}:${seconds}`;
+               /* if (seconds.innerHTML == 10) {
+                    sec.style.visibility = "hidden";
+                    sec.style.display = "none";
+                    seconds.style.marginLeft = "50px";
+                }
+                if (minutes.innerHTML == 10){
+                    min.style.visibility = "hidden";
+                    min.style.display = "none";
+                }
+                if (hours.innerHTML == 10){
+                    hour.style.visibility = "hidden";
+                    hour.style.display = "none";
+                }*/
+            }
+            function start() {
+                cronometro = setInterval(crono, 1000);
+                pause.disabled = false;
+                play.disabled = true;
+                end.disabled = false;
+            }            
+            function stop() {
+                clearTimeout(cronometro);
+                pause.disabled = true;
+                play.disabled = false;
+                play.textContent = "Restart";
+                seconds = undefined;
+                /*starting+= new Date().getSeconds();*/
+            }
+            function finish() {
+                stop();
+                display.textContent = `${"00"}:${"00"}:${"00"}`;
+                play.textContent = "Start";
+                seconds = undefined;
+                end.disabled = true;
+                let cronometro = "";
+                let hours = 0;
+                let minutes = 0;
+                let seconds;
+                let starting;
+                let count = 0;
+            }
+        
+        </script>
+    </footer>
+</body>
+</html>
