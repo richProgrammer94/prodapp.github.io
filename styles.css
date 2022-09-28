@@ -1,0 +1,853 @@
+* {
+    border-style: border-box;
+}
+/* font-face no funcionó */
+@font-face {
+    font-family: woff;
+    src: url(sansation_bold.woff);
+    font-weight: bold;
+  }
+
+html, body {
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 50px;
+    background-color: black;
+    overflow: auto;
+}
+
+html :not(.input,#click-portfolio) {
+    user-select: none;
+}
+
+header, main, footer {
+    animation-name: animatebody;
+    animation-duration: 5s;
+}
+
+@keyframes animatebody {
+    from {left: -500px; opacity:0}
+    to {left:0; opacity:1}
+  }
+
+
+header, footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: black;
+    height: 70px;
+    margin-top: 0;
+    color: white;
+    text-align: center;
+    font-family: Righteous;
+    font-size: 2rem;
+}
+
+.tab {
+    z-index: 1;
+    width: 15%;
+    height: 130px;
+    position: absolute;
+    top: 0;
+    right: 120px;    
+    translate: 0 -78%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex-wrap: nowrap;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    transition: translate 0.7s;
+}
+.tab-shown {
+    translate: 0 0;
+}
+
+.tab-content {
+    font-size: .5rem;
+    height: fit-content;
+    width: 100%;
+    background-color: white;
+    color: black;
+    z-index: 1;
+    border-radius: 0 0 5px 5px;
+    display: flex;
+    flex-direction: column;
+}
+.tab-content h2 {
+    font-size: 1.5em;
+    margin-bottom: 0;
+}
+.tab-content hr {
+    width: 80%;
+    border-width: 0px;
+    background-color: rgb(29, 29, 29);
+    height: 1px;
+}
+.tab-content ul {
+    padding: 0;
+    margin-top: 5px;    
+    text-align: left;
+    margin-left: 33px;
+    float: center;
+}
+.tab-content ul li {
+    word-spacing: 0;
+    font-size: 1.5em;
+}
+
+.tab-button {
+    width: 20%;
+    height: 35px;
+    padding: 0;
+}
+.button-tab {
+    display: block;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    border-radius: 0 0 10px 10px;
+    border: none;
+    font-size: 1rem;
+}
+.button-tab::after {
+    content: "+";
+}
+.button-tab.active::after {
+    content: "-";
+}
+
+main {
+    display: flex;
+    gap: 0px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    height: 270px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.time {
+    font-size: 8vw;
+    font-weight: bolder;
+    width: 70%;
+    justify-content: center;
+    transition: all 0.3s;
+    height: 270px;
+    background-color: gray;
+}
+
+#display {
+    font-family: monospace;
+    margin: 0;
+    transform: scale(1,2);
+    letter-spacing: -4px;
+}
+
+.timend {
+    color: red;
+    font-weight: 100;
+    background-color: rgba(0,0,0,.8);
+}
+.timepaused {
+    color: rgb(60,60,60);
+}
+
+.timefinished {
+    color: black;
+}
+
+#time-message {
+    position: absolute;
+    text-align: center;
+    height: 1.5rem;
+    float: right;
+    font-size: 1rem;
+    color: red;
+    top: 57px;
+    right: 0px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 100;
+    background-color: black;
+}
+
+.start-end {
+    width: 100%;
+    background-color: black;
+    margin: 0;
+    height: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-evenly;
+}
+
+.timing {
+    display: flex;
+    align-items: center;
+    font-size: 1.5em;
+    font-family: monospace;
+    color: white;
+    justify-content: center;
+    width: 33%;
+    height: 2.5em;
+    background-color: rgba(0,0,0,0);
+    transition: all 0.7s ease-in-out;
+    margin: 0;
+}
+
+.start-end > .timing > p:last-of-type {
+    color: red;
+}
+
+#seconds, #sec {
+    font-size: 0.4em;
+    letter-spacing: -10px;
+}
+
+#sec {
+    margin-left: 50px;
+}
+
+.input {
+    display: flex;
+    font-family: sans-serif;
+    flex-direction: column;
+    width: 30%;
+    gap: 10px;
+    padding: 0 auto;
+    text-align: center;
+    vertical-align: bottom;
+    background-color: rgb(13, 95, 77);
+    color: white;
+    font-size: 0.5em;
+    margin: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.input:focus {
+    background-color: rgb(13, 95, 77);
+}
+
+.input-focus {
+    animation-name: focusinput;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes focusinput {
+    from { background-color: rgb(13, 95, 77);}
+    to { background-color: rgb(55, 170, 145);}
+}
+
+.input > h2 {
+    width: 70%;
+    font-family: monospace;
+    font-size: 3em;
+    margin: 0;
+    margin-bottom: -10px;
+}
+.input > h1 {
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.5em;
+    margin: 0;
+    font-weight: 100;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 0;
+    padding-top: 10px;
+    height: 180px;
+}
+
+form {
+    width: 60%;
+    height: 200px;
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 150px;
+    gap: -15px;
+    padding: 1px 5px;
+    margin: auto;
+    margin-bottom: 0px;
+    font-family: monospace;
+    font-size: 2em;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 105px;
+    height: 1.5em;
+    padding: 0;
+    cursor: pointer;
+}
+label:last-of-type{
+    cursor:initial;
+}
+.check {
+/*    display: inline;*/
+    float: left;
+}
+
+.another {
+    width: 100%;
+    float: none;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#another {
+    width: 50%;
+    height: 1.5em;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: monospace;
+    letter-spacing: .1%;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 3px;
+    cursor: pointer;
+}
+#another:hover {
+    background-color: black;
+    color: white;
+}
+#another:focus {
+    color: gray;
+}
+
+#other {
+    width: 70px;
+    height: .8em;
+    font-family: monospace;
+}
+
+.tempo {
+    width: 35px;
+    float: right;
+}
+
+#tempo {
+    width: 30px;
+    float: right;
+    height: 10px;
+    font-family: monospace;
+}
+.select {
+    font-size: .7em;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    gap: 10px;
+    width: 40%;
+}
+
+button {
+    width: 80%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: normal;
+    height: 2rem;
+    background-color: rgb(0,0,0);
+    color: rgb(255,255,255);
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 3px;
+    transition: all .3s;
+}
+
+button:hover {
+    background-color: rgba(255,255,255,0.9);
+    cursor: pointer;
+    border: 3px solid rgba(255,255,255,0.5);
+    color: black;
+}
+
+button:disabled {
+    color: rgb(120,120,120);
+    background-color: rgba(0,0,0, .6);
+    border: 1px solid rgba(0,0,0, .5);
+}  
+
+.state {
+    background-color: rgb(30, 70, 60);
+    height: 180px;
+    border: 2.5px solid white;
+    border-top: 4px solid white;
+    margin: 0;
+    flex-grow: 1;
+    align-items: center;
+    padding-top: 52px;
+    width: 30%;
+}
+
+#state-title {
+    font-weight: bolder;
+    font-size: larger;
+    margin-top: -40px;
+}
+
+#result {
+    margin-top: 15px;
+    text-align: right;
+    width: 75%;
+}
+
+#state-total {
+    display: inline;
+    font-size: .7em;
+}
+
+#total {
+    display: inline;
+}
+
+.tasks {
+    font-size: 1.2em;
+    column-gap: 50px;
+    overflow: visible;
+    width: 80%;
+}
+
+ol {
+    height: 70%;
+    width: 80%;
+    margin: 0;
+    overflow-y: auto;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    transition: all 0.5s;
+}
+
+li {
+    word-spacing: 10px;
+    width: 100%;
+    font-size: 1em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 2px auto;
+    transition: all 3s;
+}
+
+li::marker {
+    float: left;
+    margin-right: 0px;
+}
+
+li > p {
+    float: right;
+    margin: 0;
+}
+
+.shine {
+    background-color: white;
+    color: black;
+}
+
+.centered {
+    background-color: rgb(17, 39, 33);
+    width: 35%;
+    transition: all 0.5s;
+}
+
+.animate {
+    animation-name: changecolor;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+@keyframes changecolor {
+    0% { background-color: rgb(17, 39, 33); color: white;}
+    50% { background-color: rgb(68, 131, 101); color: black;}
+    100% { background-color: rgb(17, 39, 33); color: white;}
+}
+#actual {
+    text-transform: uppercase;
+}
+
+.animate-next {
+    animation-name: changecolorslow;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+@keyframes changecolorslow {
+    0% { background-color: rgb(30, 70, 60); color: white;}
+    40% { background-color: rgb(30, 70, 60); color: white;}
+    50% { background-color: rgb(68, 131, 101); color: black;}
+    60% { background-color: rgb(30, 70, 60); color: white;}
+    100% { background-color: rgb(30, 70, 60); color: white;}
+}
+
+.state > div {
+    display: flex;
+    flex-direction: column;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    vertical-align: middle;
+    text-align: center;
+    color: white;
+    align-items: center;
+}
+
+.state > div > p, .state > div > h2 {
+    margin: 0;
+}
+
+div > h2 {
+    font-size: 3em;
+}
+#next {
+    text-transform: uppercase;
+    font-size: 2.5em;
+    font-style: italic;
+    font-weight: lighter;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 35px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#worktimer-footer {
+    width: 15%;
+    font-family: Righteous, Verdana, Geneva, Tahoma, sans-serif;
+    font-size: .5em;
+    font-weight: 100;
+    padding-left: 15px;
+    text-align: center;
+}
+
+#my-info {
+    width: 85%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 450px;
+    font-family: monospace;
+    justify-content: space-evenly;
+    height: 100%;
+}
+#my-info p {
+    margin: auto 0;
+}
+#click-portfolio {
+    color: white;
+    text-decoration: none;
+    background-color: rgb(17, 105, 76);
+    border-radius: 5px;
+    height: 1.5em;
+    width: 23%;
+    margin: auto 0;
+    font-weight: bold;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#click-portfolio:link {
+    color: white;
+}
+
+#click-portfolio:hover {
+    background-color: white;
+    color: black;
+}
+#click-portfolio:active {
+    color: rgb(127, 170, 148);
+}
+.shining {
+    animation-name: portfolio-shining;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+@keyframes portfolio-shining {
+   0% {background-color: rgb(17, 105, 76); color: white;}
+   45% {background-color: rgb(17, 105, 76); color: white;}
+   50% {background-color: white; color: black;}
+   55% {background-color: white; color: black;}
+   60% {background-color: rgb(17, 105, 76); color: white;}
+   100% {background-color: rgb(17, 105, 76); color: white;}
+}
+
+@media only screen and (max-width: 550px) {
+    main {
+        flex-direction: column;
+    }
+    .input {
+        width: 100%;
+    }
+    .time {
+        letter-spacing: 10px;
+        height: 150px;
+        width: 100%;
+    }
+    .state {
+        width: 100%;
+    }
+    .centered {
+        height: 50vh;
+    }
+    .start-end {
+        flex-direction: column;
+        height: 15em;
+        gap: -20px;        
+    }
+    .timing {
+        width: 100%;
+        margin: 0;
+        letter-spacing: 5px;
+    }
+    #display {
+        letter-spacing: 5px;
+        transform: scale(1,2.2);
+    }
+    #time-message {
+        top: 331px;
+        font-size: 0.7rem;
+        height: 0.8rem;
+        letter-spacing: 0px;
+    }
+    footer {
+        flex-direction: column;
+        height: fit-content;
+    }
+    #worktimer-footer {
+        width: 100%;
+        text-align: center;
+        height: 3rem;
+    }
+    #my-info {
+        width: 100%;
+        height: 3rem;
+    }
+    .modal-header h2 {
+        font-size: 3em;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    html, body {
+        height: fit-content;
+    }
+    #display {
+        transform: scale(1,3);
+    }
+    footer {
+        flex-direction: column;
+        height: fit-content;
+    }
+    #worktimer-footer {
+        width: 100%;
+        text-align: center;
+    }
+    #my-info {
+        width: 100%;
+    }
+    .modal-header h2 {
+        font-size: 2em;
+    }
+}
+
+@media only screen and (max-width: 330px) {
+    header {
+        font-size: 7vw;
+    }
+    html, body {
+        position:static;
+    }
+    footer {
+        flex-direction: column;
+        height: fit-content;
+    }
+    #worktimer-footer {
+        width: 100%;
+        text-align: center;
+    }
+    #my-info {
+        width: 100%;
+    }
+    .modal-header h2 {
+        font-size: 1em;
+    }
+}
+
+@media only screen and (min-width: 1030px) {
+    .box {
+        height: 27vw;
+    }
+}
+/*@media only screen and (min-width: 1500px) {
+    .box {
+        height: 450px;
+    }
+}
+*/
+
+
+/* SCROLL BARS */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #888; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: black; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(27, 34, 30); 
+  }
+
+/* MODAL BOX */
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
+    padding-top: 200px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,1); /* Black w/ opacity */
+    transition: all 3s;
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    position: relative;
+    background-color: black;
+    margin: auto;
+    padding: 0;
+    width: 40%;
+    border: 5px solid rgb(11, 90, 60);
+    border-radius: 5px;
+    box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2),0 12px 53px 0 rgba(255, 255, 255, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 3s;
+    animation-name: animatetop;
+    animation-duration: 3s;
+    transition: all .5s;
+  }
+  .modal-content:hover {
+    transform: scale(1.05,1.05)
+  }
+  
+  /* Add Animation */
+  @-webkit-keyframes animatetop {
+    from {top:-100px; opacity:0} 
+    to {top:0; opacity:1}
+  }
+  
+  @keyframes animatetop {
+    from {top:-100px; opacity:0}
+    to {top:0; opacity:1}
+  }
+  
+  /* The Close Button */
+  .close {
+    display: block;
+    color: white;
+    font-family: monospace;
+    font-size: 20px;
+    margin: auto;
+    font-weight: bold;
+    width: 30%;
+    background-color: rgb(15, 83, 55);
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .modal-header{
+    text-align: center;
+    padding: 2px 5px;
+    background-color: black;
+    color: white;
+    font-family: Righteous;
+    font-size: 1rem;
+  }
+  .modal-header h2 {
+    margin-bottom: 0px;
+    font-size: 4em;
+  }
+  .modal-header p {
+    font-family: monospace;
+    font-style: italic;
+    letter-spacing: -0.8px;
+  }
+
+  .modal-header h3 {
+    font-size: .7em;
+    font-style: italic;
+    font-weight: lighter;
+    margin-top: 0;
+  }
+  
+  .modal-body {
+    padding: 2px 16px;
+    background-color: black;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+  
+  .modal-footer {
+    text-align: center;
+    padding: 2px 16px;
+    background-color: black;
+    color: white;
+  }
