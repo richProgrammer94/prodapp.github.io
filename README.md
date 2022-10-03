@@ -2,7 +2,7 @@
 Hi! This is my first productivity app.
 It's main purpose is to track your work time.
 
-All the best,
+Kind regards,
 
 
 RICHI (Richard Adrian Ramirez Chacono)
