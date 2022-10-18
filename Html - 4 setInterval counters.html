@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X93WHGCPPL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X93WHGCPPL');
+</script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <!-- FUENTE RIGHTEOUS DE GOOGLE FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Goldman&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,400&amp;display=swap" rel="stylesheet">
+    <title>Prod App</title>
+</head>
+<body>
+    <!-- Modal content -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>workTIMER</h2>
+                <h3>For programming apprentices!</h3>
+                <p>It's better to work 4 hrs focusing<br>than the whole day chatting!</p>
+            </div>
+            <div class="modal-body">
+                <button class="close">Go!</button>
+            </div>
+                <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+<!-- Modal content -->
+    <header>
+        <h1>workTIMER</h1>
+        <div class="tab">
+            <div class="tab-content">
+                <h2>Technologies used</h2>
+                <hr>
+                <ul>
+                    <li>HTML5</li>
+                    <li>CSS3</li>
+                    <li>Vanilla JavaScript</li>
+                </ul>
+            </div>
+            <div class="tab-button">
+                <button class="button-tab"></button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="input box">
+            <h2>Working method for today</h2>
+            <h1>Suggested total time per work: 4 hrs</h1>
+            <!-- <select name="dropdown" id="dropdown">
+                <option value="Choose one">Choose one</option>
+                <option value="Practice/Project">Practice/Project</option>
+                <option value="Learn">Learn</option>
+                <option value="Both">Both</option>
+            </select> -->
+        <div class="actions">
+            <form id="forma" action="" autocomplete="on">
+                <div class="options">
+
+                    <label class="select">
+                        Select one:
+                    </label>
+                        <label class="tempo select" for="tempo">
+                            Hours:
+                        </label>
+                    
+                        <label for="coding">
+                            <input class="check task" id="coding" type="checkbox" name="input" value="coding">Coding
+                        </label>
+                            <label class="tempo" for="tempo">
+                                <input class="number 1" type="number" id="tempo" disabled>
+                            </label>
+
+                        <label for="learning">
+                            <input class="check task" id="learning" type="checkbox" name="input" value="learning">Learning
+                        </label>
+                            <label class="tempo" for="tempo">
+                                <input class="number 2" type="number" id="tempo" disabled>
+                            </label>
+
+                        <label for="practice">
+                            <input class="check task" id="practice" type="checkbox" name="input" value="practice">Practice
+                        </label>
+                            <label class="tempo" for="tempo">
+                                <input class="number 3" type="number" id="tempo" disabled>
+                            </label>
+
+                        <label for="project">
+                            <input class="check task" id="project" type="checkbox" name="input" value="project">Project
+                        </label>
+                            <label class="tempo" for="tempo">
+                                <input class="number 4" type="number" id="tempo" disabled>
+                            </label>
+                </div>
+                <label class="another" for="another">
+                    <input class="another" id="another" type="button" name="input" value="Add task">* Add another task different from the list!
+                </label>
+            </form>
+            <div class="buttons">
+                <button id="play" type="button" onclick="start()" disabled>START</button>
+                <button id="pause" type="button" onclick="stop()" disabled>PAUSE</button>
+                <button id="end" type="button" onclick="finish()">RESET</button>
+            </div>
+        </div>
+        </div>
+        <div class="time box timepaused">
+            <h2 id="time-message">Not Started</h2>
+            <h1 class="" id="display">00:00:00</h1>
+        </div>
+        <div class="start-end">
+            <div class="timing start"><p>Start Time:&emsp;</p><p id="start-hour">--:-- ----</p></div>
+            <div class="timing end"><p>End Time:&emsp;</p><p id="end-hour">--:-- ----</p></div>
+            <div class="timing hour"><p>Time:&emsp;</p><p id="time">00:00 a.m</p></div>
+        </div>
+        <div class="state">
+            <div>
+                <p id="state-title">Today to-do list</p>
+                <div class="options tasks">
+                    <p>Order</p>
+                    <p>Task</p>
+                    <p>Hours</p>
+                </div>
+                <div id="result">
+                    <p id="state-total">Total Hours to work:</p>
+                    <p id="total">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="state centered">
+            <div>
+            <p>You are working on</p>
+            <h2 id="actual"></h2>
+            </div>
+        </div>
+        <div class="state next">
+            <div>
+            <p>Next task:</p>
+            <h2 id="next"></h2>
+            </div>
+        </div>
+
+    <div>
+    </div>
+    </main>
+    <footer>
+        <script>
+                const play = document.getElementById("play");
+                const pause = document.getElementById("pause");
+                const end = document.getElementById("end");
+                let display = document.getElementById("display");
+                let screenTimer = document.getElementsByClassName("time")[0];
+                let startDisplay = document.getElementById("start-hour");
+                let endDisplay = document.getElementById("end-hour");
+                let timeDisplay = document.getElementById("time");
+                let cronometro = "";
+                let hours = 0;
+                let minutes = 0;
+                let seconds = 0;
+                let hidden = 0;
+                let visible = 0;
+                let standby = 0;
+                let timer = 0;
+                let timerPopup = 0; 
+                let hoursPopup = 0;
+                let minutesPopup = 0;
+                let secondsPopup = 0;
+                let hour = 0;
+                let ampm = "";
+                const array = [];
+                let toDoList = [];
+                let checkboxes = [];
+                let ol = document.createElement("ol");
+                let totals = [];
+                let timeToEnd = 0;
+                document.getElementsByClassName("tasks")[0].appendChild(ol);
+                // MODAL CODE
+                // Get the modal
+                var modal = document.getElementById("myModal");
+                // Get the <span> element that closes the modal
+                var spann = document.getElementsByClassName("close")[0];
+                let actual;
+/* CountAPI HIT Visits */
+//5af737f5-9260-4f80-b0a4-59cae6d9b58e id for workTimer hit visits
+fetch("https://api.countapi.xyz/hit/worktimer/5af737f5-9260-4f80-b0a4-59cae6d9b58e")
+            .then(response => {
+                if(!response.ok) {
+                    throw new Error(`HTTP error: ${response.status}`)
+                }
+                return response.json();
+            })
+            .then(json => console.log(`Times visited: ${json.value}`))
+            .catch((err) => console.error(`Fetch problem: ${err.message}`)); // Fetch ends here
+            
+
+window.addEventListener("load", () => { 
+    // Opening the modal ON-LOAD
+    modal.style.display = "block";
+    
+    setTimeout(() => {
+        Notification.requestPermission().then((permission) => {
+                    if (permission === "granted") {
+                        const notification = new Notification("workTIMER will send you notifications", {
+                            body: "It's glad to help you focusing on your work!"
+                        });
+                        setTimeout(() => {
+                            notification.close();                                                                                                       
+                        }, 4000);
+                    }
+        });
+    }, 2000);
+                });
+
+// When the user clicks on <span> (x), close the modal
+    spann.onclick = function() {
+        modal.style.display = "none";
+        document.getElementsByClassName("input")[0].classList.add("input-focus");
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    /* CountAPI HIT Window Clicks */
+    //6b63ce74-43f1-433e-bdc4-d68d38e601c3 id for workTimer hit clicks
+    fetch("https://api.countapi.xyz/hit/worktimer/6b63ce74-43f1-433e-bdc4-d68d38e601c3")
+            .then(response => {
+                if(!response.ok) {
+                    throw new Error(`HTTP error: ${response.status}`)
+                }
+                return response.json();
+            })
+            .then(json => console.log(`Times clicked: ${json.value}`))
+            .catch((err) => console.error(`Fetch problem: ${err.message}`)); // Fetch ends here
+  if (event.target == modal) {
+    modal.style.display = "none";
+    document.getElementsByClassName("input")[0].classList.add("input-focus");
+  }
+}
+
+// Focus INPUT
+document.getElementsByClassName("input")[0].addEventListener("click", () => {
+    document.getElementsByClassName("input")[0].classList.remove("input-focus");
+})
+
+
+setInterval(() => {
+    //------------ HORA ACTUAL
+                hour = new Date();
+                minuteEnd = hour.getMinutes();
+                hourEnd = hour.getHours();
+                if (minuteEnd < 10) minuteEnd = "0" + minuteEnd;
+                if (hourEnd < 12) ampm = "a.m."; else ampm = "p.m.";
+                if (hourEnd == 0) {
+                    hourEnd = 12;
+                } else if (hourEnd > 12) {
+                    hourEnd-= 12;
+                }
+                if (hourEnd < 10) hourEnd = "0" + hourEnd;
+                if (play.textContent === "START") {
+                    time.textContent = `${hourEnd}:${minuteEnd} ${ampm}`;
+                }
+                //------------
+        if (hour.getSeconds() == 0) {
+            document.getElementsByClassName("timing")[2].style.backgroundColor = "rgba(255,255,255,.7)";
+        }
+    
+}, 500);
+
+//----------- Tab Button
+document.getElementsByClassName("tab")[0].addEventListener("click", (e) => {
+    document.querySelector(".tab").classList.toggle("tab-shown");
+    document.querySelector(".button-tab").classList.toggle("active");
+    e.stopPropagation();
+    console.log("hahahaha")
+},true)
+
+            document.addEventListener("visibilitychange",() => {
+                    if (pause.disabled == false) {
+                        timer = hours * 3600 + minutes*60 + seconds;
+                        if (document.hidden) {
+                            hidden = Date.now()/1000; 
+                        } else {visible = Date.now()/1000; 
+                            console.log("timer", timer)
+                        }
+        
+                        standby = Math.round(visible - hidden);
+                        if(standby>0){
+                            console.log(standby)
+                            timer+= standby;   
+                        }
+                        hours = Math.floor(timer / 3600);
+                        minutes = Math.floor(((timer / 3600) - hours)*60);
+                        seconds = Math.floor((((timer / 3600) - hours)*60 - minutes)*60);
+
+                    }
+                });
+
+                // PROBAR notifications API y esto: 
+                ////onclick = comillas myWin = window.open('','winName','location=0,width=300,height=214'); myWin.focus();
+    function crono() { 
+            if (document.visibilityState === "visible") {
+
+                if(seconds == 59) {
+                    seconds = 0;
+                    if(minutes == 59) {
+                        minutes = 0;
+                        hours++;
+                    } else minutes++;
+                } else seconds++;
+                if (seconds > 59) seconds-=60;
+               // console.log(minutes,seconds,hours)
+            // display
+                if (seconds < 10 && minutes < 10 && hours < 10)
+                display.textContent = `${"0"+hours}:${"0"+minutes}:${"0"+seconds}`;
+                else if (minutes < 10 && hours < 10)
+                display.textContent = `${"0"+hours}:${"0"+minutes}:${seconds}`;
+                else if (hours < 10 && seconds < 10)
+                display.textContent = `${"0"+hours}:${minutes}:${"0"+seconds}`;
+                else if (minutes < 10 && seconds < 10)
+                display.textContent = `${hours}:${"0"+minutes}:${"0"+seconds}`;
+                else if (hours < 10)
+                display.textContent = `${"0"+hours}:${minutes}:${seconds}`;
+                else display.textContent = `${hours}:${minutes}:${seconds}`;
+            }
+            
+            timerPopup++;  
+            hoursPopup = Math.floor(timerPopup / 3600);
+            minutesPopup = Math.floor(((timerPopup / 3600) - hoursPopup)*60);
+            secondsPopup = Math.floor((((timerPopup / 3600) - hoursPopup)*60 - minutesPopup)*60);
+
+            //if (minutesPopup % 5 == 0 && minutesPopup != 0 && secondsPopup == 0)
+        if (secondsPopup % 5 == 0) {
+                Notification.requestPermission().then((permission) => {
+                if (permission === "granted") {
+                    notification = new Notification("workTIMER / Actual task: " + array[actual], {
+                        body: `${hoursPopup} h  :  ${minutesPopup} m  :  ${secondsPopup} s`,
+                        
+                    });
+                    notification.addEventListener("click", () => {
+                        window.focus();
+                        notification.close();
+                    });
+                    setTimeout(() => {
+                        notification.close();
+                    }, 2000);
+                }
+            });
+        } // This last IF maintains the code running, since browser stops when tab is inactive
+        if (minutesPopup === 30 && secondsPopup == 0) {
+                Notification.requestPermission().then((permission) => {
+                if (permission === "granted") {
+                    notification = new Notification("30 minutes more", {
+                        body: `${hoursPopup} h  :  ${minutesPopup} m`,
+                        
+                    });
+                    notification.addEventListener("click", () => {
+                        window.focus();
+                        notification.close();
+                    });
+                }
+            })
+        } 
+        if (minutesPopup === 59 && secondsPopup == 59) {
+                Notification.requestPermission().then((permission) => {
+                if (permission === "granted") {
+                    notification = new Notification(`${hoursPopup} hours completed`, {
+                        body: `${hoursPopup} h  :  ${minutesPopup} m`,
+                        
+                    });
+                    notification.addEventListener("click", () => {
+                        window.focus();
+                        notification.close();
+                    });
+                }
+            })
+        } 
+        //------------ Brillo en la lista de tasks
+        timePos.forEach((elem,t) => {
+            if (seconds > elem) actual = t;
+        })
+        totals[actual].parentElement.classList.toggle("shine");
+        totals[actual].parentElement.focus();
+        
+        for (let i = 0; i < actual; i++) {
+            totals[i].parentElement.classList.add("shine");
+        }
+        //------------ Actual task
+        document.getElementById("actual").textContent = array[actual];
+
+        //------------ Next task
+        if (actual == totals.length-1) document.getElementById("next").textContent = "END OF YOUR WORK";
+        else document.getElementById("next").textContent = array[actual+1];
+
+        //------------ FIN WORKtimer
+        
+        if (seconds == timeToEnd || secondsPopup == timeToEnd) {
+            totals.forEach(t => t.parentElement.classList.add("shine"))
+            document.getElementById("total").classList.add("shine");
+            finish();
+            end.focus();
+            end.style.border = "1px solid white";
+            Notification.requestPermission().then((permission) => {
+                if (permission === "granted") {
+                    notifEnd = new Notification("workTIMER finished", {
+                        body: `${hoursPopup} h  :  ${minutesPopup} m  :  ${secondsPopup} s`,
+                        
+                    });
+                    notifEnd.addEventListener("click", () => {
+                        window.focus();
+                        notifEnd.close();
+                    });
+                    setTimeout(() => {
+                        notifEnd.close()
+                    }, 5000);
+                }
+            });
+        }        
+    }// funcion crono
+
+            function start() {
+                cronometro = setInterval(crono, 1000);
+                document.getElementById("time-message").textContent = "Running";
+                //------------ START TIME
+                hour = new Date();
+                minuteEnd = hour.getMinutes();
+                hourEnd = hour.getHours();
+                if (minuteEnd < 10) minuteEnd = "0" + minuteEnd;
+                if (hourEnd < 12) ampm = "a.m."; else ampm = "p.m.";
+                if (hourEnd == 0) {
+                    hourEnd = 12;
+                } else if (hourEnd > 12) {
+                    hourEnd-= 12;
+                }
+                if (hourEnd < 10) hourEnd = "0" + hourEnd;
+                if (play.textContent === "START") {
+                    startDisplay.textContent = `${hourEnd}:${minuteEnd} ${ampm}`;
+                    document.getElementsByClassName("timing")[0].style.backgroundColor = "rgba(255,255,255,.7)";
+                    endDisplay.textContent = `--:-- ----`;
+                    Array.from(document.getElementsByClassName("check")).forEach(x => x.disabled = true);
+                    Array.from(document.getElementsByClassName("number")).forEach(y => y.disabled = true);
+                    document.getElementById("another").disabled = true;
+                    //------------ Brillo en la lista de tasks
+                    tempos = totals.map(tempo => Number(tempo.textContent));
+                    let acum = 0;
+                    timePos = [];
+                    tempos.forEach(tempo => {
+                        acum+= tempo;
+                        timePos.push(acum);
+                    })
+                    timePos.unshift(0);               
+                }
+                //------------
+                pause.disabled = false;
+                play.disabled = true;
+                end.disabled = false;
+                end.textContent = "END";
+                screenTimer.classList.remove("timend");
+                timeToEnd = document.getElementById("total").textContent;
+                screenTimer.classList.remove("timepaused");
+                setTimeout(() => {
+                    document.getElementsByClassName("centered")[0].classList.add("animate");
+                document.getElementsByClassName("next")[0].classList.add("animate-next");
+                }, 900);
+                document.getElementsByClassName("input")[0].classList.remove("input-focus");
+            }//------------ Function START
+            
+            //------------ Aquí se apaga la luz de los avisos de horas de inicio, fin y hora actual
+            const timings = Array.from(document.querySelectorAll(".timing"));
+            timings.forEach((timing,i) => timing.addEventListener("transitionend", () => {
+                document.getElementsByClassName("timing")[i].style.backgroundColor = "rgba(0,0,0,0)";
+            }))
+
+
+
+            //------------ Aquí se toma el orden de los checkboxes
+
+            
+            document.getElementsByClassName("options")[0].addEventListener("click", (evento) => {
+                
+                if (evento.target.matches(".check")) {
+                        const listArray = Array.from(document.getElementsByClassName("check"));
+                        let pos = listArray.indexOf(evento.target); console.log(pos)
+                        console.log("hi")
+                        let li = "";
+                        let span = "";
+                        if (evento.target.classList.contains("task")) {
+                                inputHour = document.getElementsByClassName("number")[pos];
+                                if (evento.target.checked == true) {
+                                    inputHour.disabled = false;
+                                    inputHour.focus();
+                                    inputHour.required = true;
+                                    li = document.createElement('li');
+                                    span = document.createElement("p");
+                                    span.textContent = inputHour.value;
+                                    span.classList.add("span-hour");
+                                    ol.appendChild(li);
+                                    li.appendChild(document.createTextNode(evento.target.value));
+                                    li.appendChild(span);
+                                    array.push(evento.target.value);
+                                    
+                                }
+                                else {
+                                    inputHour.disabled = true;
+                                    inputHour.required = false;
+                                    //inputHour.value = "";
+                                    if (ol.hasChildNodes()) {
+                                        ol.removeChild(ol.children[array.indexOf(evento.target.value)]);
+                                    }
+                                    array.splice(array.indexOf(evento.target.value),1);
+                                    
+                                }
+                            } 
+                        else {
+                                let taskInput = document.getElementsByClassName("new-input")[pos-4];
+                                let hourInput = document.getElementsByClassName("new-number")[pos-4];
+                                if(evento.target.checked) {
+                                    li = document.createElement('li');
+                                    span = document.createElement("p");
+                                    span.textContent = hourInput.value;
+                                    span.classList.add("span-hour");
+                                    ol.appendChild(li);
+                                    li.appendChild(document.createTextNode(taskInput.value));
+                                    li.appendChild(span);
+                                    taskInput.disabled = true;
+                                    hourInput.disabled = true;
+                                    array.push(taskInput.value);
+                                } else {
+                                    if (ol.hasChildNodes()) {
+                                        ol.removeChild(ol.children[array.indexOf(taskInput.value)]);
+                                    }
+                                    taskInput.disabled = false;
+                                    hourInput.disabled = false;
+                                    array.splice(array.indexOf(taskInput.value),1);
+                                }
+                                
+                
+                        }
+                        checkStart();       
+                }
+
+
+                        
+            }); //CHECKBOXES
+            
+/*
+            checkboxes = Array.from(document.querySelectorAll(".check"));
+            checkboxes.forEach((checkbox,i) => checkbox.addEventListener("click", () => {
+                console.log("hi")
+                
+                let li = "";
+                inputHour = document.getElementsByClassName("number")[i];
+                if (checkbox.checked == true) {
+                    inputHour.disabled = false;
+                    inputHour.focus();
+                    inputHour.required = true;
+                    li = document.createElement('li');
+                    ol.appendChild(li);
+                    li.appendChild(document.createTextNode(checkbox.value));
+                    array.push(checkbox.value);
+                    console.log(array)
+                }
+                else {
+                    inputHour.disabled = true;
+                    inputHour.required = false;
+                    inputHour.value = "";
+                    if (ol.hasChildNodes()) {
+                        ol.removeChild(ol.children[array.indexOf(checkbox.value)]);// AQUI HAY ERROR porque el array era originalmente para los checkboxes, y ahora estoy metiendo nuevos inputs aquí, y esto se maneja es con Children
+                    }
+                    array.splice(array.indexOf(checkbox.value),1);
+                    console.log(array)
+                }
+            checkStart();
+                //console.log(ol)
+            })); //CHECKBOXES
+            
+*/     
+            
+            //------------ Aquí se crean opciones input text
+            document.getElementById("another").onclick = () => {
+                //------------ Inputs de task
+                let label = document.createElement("label");
+                let another = document.createElement("input");
+                let newCheck = document.createElement("input");
+                newCheck.classList.add("new-check","check");
+                newCheck.type = "checkbox";
+                newCheck.disabled = true;
+                another.type = "text";
+                another.classList.add("new-input");
+                another.maxLength = "9";
+                another.id = "other";  // REVISAR PORQUE TODOS SALEN CON MISMA ID
+                label.htmlFor = "other";
+                label.appendChild(newCheck);
+                label.appendChild(another);
+                document.getElementsByClassName("options")[0].appendChild(label);
+                // Chequeo para habilitar el boton
+                checkStart();
+                //------------ Inputs de horas
+                let labelHours = document.createElement("label");
+                let anotherHours = document.createElement("input");
+                anotherHours.type = "number";
+                anotherHours.id = "tempo";
+                anotherHours.step = "1";
+                anotherHours.disabled = true;
+                anotherHours.classList.add("number","new-number");
+                labelHours.htmlFor = "tempo";
+                labelHours.classList.add("tempo");
+                labelHours.appendChild(anotherHours);
+                document.getElementsByClassName("options")[0].appendChild(labelHours);
+                another.focus();
+            } //----- Creador de INPUTS
+
+                //------------ Se habilitan los inputs de horas al escribir en los nuevos input text
+
+                document.getElementsByClassName("options")[0].addEventListener("input", e => {
+                    target = e.target; 
+                    let arrNewInput = Array.from(document.getElementsByClassName("new-input"));
+                    let checkPos = arrNewInput.indexOf(target);
+
+                    let arrNewHour = Array.from(document.getElementsByClassName("number"));
+                    let checkPosNum  = arrNewHour.indexOf(target);
+                    
+                    if (target.matches(".new-input")) {
+                        if (target.value) {
+                        document.getElementsByClassName("new-number")[checkPos].disabled = false;
+                        
+                        }
+                        else {
+                        document.getElementsByClassName("new-number")[checkPos].disabled = true;
+                        document.getElementsByClassName("new-number")[checkPos].value = "";
+                        document.getElementsByClassName("check")[checkPos+4].disabled = true;
+                        }
+
+                        
+                    }
+                    else if (target.matches(".number")) {
+                        if (target.value){
+                            document.getElementsByClassName("check")[checkPosNum].disabled = false;
+                        }
+                        else {
+                            if (target.classList.contains("new-number")) document.getElementsByClassName("check")[checkPosNum].disabled = true;
+                        }
+                        y = document.getElementsByClassName("check")[arrNewHour.indexOf(target)].value;
+                        document.getElementsByClassName("span-hour")[array.indexOf(y)].textContent = document.getElementsByClassName("number")[checkPosNum].value;
+                    }
+                    checkStart();
+                });                           
+
+
+            //------------ Aquí se habilita el boton START si los checkboxes y horas son iguales
+            function checkStart () {
+                let hourList = Array.from(document.getElementsByClassName("number"));
+                        
+                            if (array.length >= 1 && (array.length == hourList.filter(x => x.value).length)) play.disabled = false;
+                            else play.disabled = true;
+                        console.log(array)
+                        //console.log(hourList.filter(x => x.value).length,hourList.length)
+                        
+                totals = Array.from(document.getElementsByClassName("span-hour"));
+                let totalHours = totals.reduce((total,hr) => total + Number(hr.textContent),0);
+                console.log(totalHours);
+
+                document.getElementById("total").textContent = totalHours;
+
+
+
+            }
+
+            function stop() {
+                clearInterval(cronometro);
+                pause.disabled = true;
+                play.disabled = false;
+                play.textContent = "RESTART";
+                document.getElementById("time-message").textContent = "Paused";
+                screenTimer.classList.add("timepaused");
+            }
+
+
+            function finish() {
+                if (end.textContent == "END"){
+                    stop();
+                    play.disabled = true;
+                   /* end.disabled = true;*/
+                    //------------
+                    screenTimer.classList.remove("timepaused");
+                    screenTimer.classList.add("timend");
+                    setInterval(() => {
+                        screenTimer.classList.toggle("timefinished");
+                    }, 400);
+                    //------------
+                    //------------
+                    hour = new Date();
+                    minuteEnd = hour.getMinutes();
+                    hourEnd = hour.getHours();
+                    if (minuteEnd < 10) minuteEnd = "0" + minuteEnd;
+                    if (hourEnd < 12) ampm = "a.m."; else ampm = "p.m.";
+                    if (hourEnd == 0) {
+                        hourEnd = 12;
+                    } else if (hourEnd > 12) {
+                        hourEnd-= 12;
+                    }
+                    if (hourEnd < 10) hourEnd = "0" + hourEnd;
+                    endDisplay.textContent = `${hourEnd}:${minuteEnd} ${ampm}`;
+                    //------------
+                    document.getElementsByClassName("timing")[1].style.backgroundColor = "rgba(255,255,255,.7)";
+                    end.textContent = "RESET";
+                    document.getElementById("time-message").style.display = "none";
+                    document.getElementsByClassName("centered")[0].classList.remove("animate");
+                    document.getElementsByClassName("next")[0].classList.remove("animate-next");
+                } else location.reload();
+            }
+        </script>
+        <div id="worktimer-footer">
+            <h2>workTIMER</h2>
+        </div>
+        <div id="my-info">
+            <p>App made by: Richi.</p>
+            <a href="https://richiprogrammer.github.io/richi-portfolio/" target="_blank" id="click-portfolio" class="shining">Richi<span>portfolio</span></a>
+        </div>
+    </footer>
+</body>
+</html>
